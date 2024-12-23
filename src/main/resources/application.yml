@@ -2,14 +2,14 @@ spring:
   application:
     name: sst-services
   datasource:
-    url: jdbc:postgresql://localhost:5432/your_db_name
-    username: your_db_user
-    password: your_db_password
+    url: jdbc:postgresql://localhost:5432/sst-db
+    username: admin
+    password: admin
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update # Options: create, update, validate, none
+      ddl-auto: create # Options: create, update, validate, none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
