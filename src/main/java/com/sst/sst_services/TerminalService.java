@@ -1,7 +1,9 @@
 package com.sst.sst_services;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.sst.sst_dto.TerminalDto;
 import com.sst.sst_models.Terminal;
 import com.sst.sst_repositories.TerminalRepository;
 
@@ -11,14 +13,16 @@ import java.util.List;
 public class TerminalService {
 
 	private final TerminalRepository terminalRepository;
+	private final ModelMapper modelMapper;
 
-	public TerminalService(TerminalRepository terminalRepository) {
+	public TerminalService(TerminalRepository terminalRepository, ModelMapper modelMapper) {
 		this.terminalRepository = terminalRepository;
+		this.modelMapper = modelMapper;
 	}
 
 	// Create or Update a Terminal
-	public Terminal saveTerminal(Terminal terminal) {
-		return terminalRepository.save(terminal);
+	public Terminal saveTerminal(TerminalDto terminal) {
+		return terminalRepository.save(modelMapper.map(terminal, Terminal.class));
 	}
 
 	// Retrieve All Terminals

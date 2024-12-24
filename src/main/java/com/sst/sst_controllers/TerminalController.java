@@ -2,6 +2,7 @@ package com.sst.sst_controllers;
 
 import org.springframework.web.bind.annotation.*;
 
+import com.sst.sst_dto.TerminalDto;
 import com.sst.sst_models.Terminal;
 import com.sst.sst_services.TerminalService;
 
@@ -18,7 +19,7 @@ public class TerminalController {
 	}
 
 	@PostMapping
-	public Terminal createTerminal(@RequestBody Terminal terminal) {
+	public Terminal createTerminal(@RequestBody TerminalDto terminal) {
 		return terminalService.saveTerminal(terminal);
 	}
 
