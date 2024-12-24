@@ -1,20 +1,17 @@
 package com.sst.sst_services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sst.sst_models.Terminal;
 import com.sst.sst_repositories.TerminalRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TerminalService {
 
 	private final TerminalRepository terminalRepository;
 
-	@Autowired
 	public TerminalService(TerminalRepository terminalRepository) {
 		this.terminalRepository = terminalRepository;
 	}

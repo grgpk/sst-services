@@ -1,6 +1,5 @@
 package com.sst.sst_controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.sst.sst_models.Terminal;
@@ -14,7 +13,6 @@ public class TerminalController {
 
 	private final TerminalService terminalService;
 
-	@Autowired
 	public TerminalController(TerminalService terminalService) {
 		this.terminalService = terminalService;
 	}
