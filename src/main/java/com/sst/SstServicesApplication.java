@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EntityScan("demo")
+@EntityScan("com.sst.sst_models")
 public class SstServicesApplication {
 
 	public static void main(String[] args) {
