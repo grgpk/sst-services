@@ -12,11 +12,9 @@ import java.util.List;
 public class AddressService {
 
 	private final AddressRepository addressRepository;
-	private final ModelMapper modelMapper;
 
 	public AddressService(AddressRepository addressRepository, ModelMapper modelMapper) {
 		this.addressRepository = addressRepository;
-		this.modelMapper = modelMapper;
 	}
 
 	// Create Address

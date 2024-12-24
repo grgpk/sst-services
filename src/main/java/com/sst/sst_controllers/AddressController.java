@@ -27,8 +27,9 @@ public class AddressController {
     @PostMapping
     public ResponseEntity<AddressResponseDto> createAddress(@RequestBody AddressRequestDto address) {
         var tempAddress = new Address();
-        tempAddress
-    	Address createdAddress = addressService.createAddress();
+        tempAddress.setCity(address.city());
+        tempAddress.setStreet(address.street());
+    	Address createdAddress = addressService.createAddress(tempAddress);
         return ResponseEntity.ok(modelMapper.map(createdAddress, AddressResponseDto.class));
     }
 
