@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.sst.sst_dto.AddressRequestDto;
-import com.sst.sst_dto.AddressResponseDto;
 import com.sst.sst_models.Address;
 import com.sst.sst_services.AddressService;
 
@@ -16,21 +15,18 @@ import java.util.List;
 public class AddressController {
 
     private final AddressService addressService;
-    private final ModelMapper modelMapper;
-
     public AddressController(AddressService addressService, ModelMapper modelMapper) {
         this.addressService = addressService;
-        this.modelMapper = modelMapper;
     }
 
     // Create Address
     @PostMapping
-    public ResponseEntity<AddressResponseDto> createAddress(@RequestBody AddressRequestDto address) {
-        var tempAddress = new Address();
-        tempAddress.setCity(address.city());
-        tempAddress.setStreet(address.street());
+    public ResponseEntity<Address> createAddress(@RequestBody AddressRequestDto address) {
+    	var tempAddress = new Address();
+    	tempAddress.setCity(address.city());
+    	tempAddress.setStreet(address.street());
     	Address createdAddress = addressService.createAddress(tempAddress);
-        return ResponseEntity.ok(modelMapper.map(createdAddress, AddressResponseDto.class));
+        return ResponseEntity.ok(createdAddress);
     }
 
     // Get All Addresses
