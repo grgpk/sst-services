@@ -19,12 +19,12 @@ public class Terminal {
 	@JoinColumn(name = "address_id", referencedColumnName = "id")
 	private Address address;
 
-	private boolean active;
-
-	private LocalDateTime lastAccessTime;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "terminal_id", referencedColumnName = "id")
 	private List<Provider> availableProviders;
 
+	private LocalDateTime lastAccessTime;
+
+	private boolean active;
 }

@@ -10,15 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(schema = "sst_schema")
-@Setter
-@Getter
-@RequiredArgsConstructor
+@Data
 public class Payment {
 
 	@Id

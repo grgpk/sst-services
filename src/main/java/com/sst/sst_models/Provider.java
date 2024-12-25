@@ -7,15 +7,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
 @Table(schema = "sst_schema")
-@Setter
-@Getter
-@RequiredArgsConstructor
+@Data
 public class Provider {
 
 	@Id
