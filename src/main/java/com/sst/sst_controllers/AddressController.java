@@ -1,6 +1,7 @@
 package com.sst.sst_controllers;
 
-import org.modelmapper.ModelMapper;
+import com.sst.converter.AddressDtoConverter;
+import com.sst.sst_dto.AddressResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,42 +17,39 @@ public class AddressController {
 
     private final AddressService addressService;
 
-    public AddressController(AddressService addressService, ModelMapper modelMapper) {
+
+    private final AddressDtoConverter addressDtoConverter;
+
+
+    public AddressController(AddressService addressService, AddressDtoConverter addressDtoConverter) {
         this.addressService = addressService;
+        this.addressDtoConverter = addressDtoConverter;
     }
 
-    // Create Address
     @PostMapping
-    public ResponseEntity<Address> createAddress(@RequestBody AddressRequestDto address) {
-    	var tempAddress = new Address();
-    	tempAddress.setCity(address.city());
-    	tempAddress.setStreet(address.street());
-    	Address createdAddress = addressService.createAddress(tempAddress);
+    public ResponseEntity<AddressResponseDto> createAddress(@RequestBody AddressRequestDto address) {
+    	AddressResponseDto createdAddress = addressService.createAddress(addressDtoConverter.convertAddressDtoToAddress(address));
         return ResponseEntity.ok(createdAddress);
     }
 
-    // Get All Addresses
     @GetMapping
     public ResponseEntity<List<Address>> getAllAddresses() {
         List<Address> addresses = addressService.getAllAddresses();
         return ResponseEntity.ok(addresses);
     }
 
-    // Get Address by ID
     @GetMapping("/{id}")
     public ResponseEntity<Address> getAddressById(@PathVariable Long id) {
         Address address = addressService.getAddressById(id);
         return ResponseEntity.ok(address);
     }
 
-    // Update Address
     @PutMapping("/{id}")
     public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
         Address updatedAddress = addressService.updateAddress(id, address);
         return ResponseEntity.ok(updatedAddress);
     }
 
-    // Delete Address
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAddress(@PathVariable Long id) {
         addressService.deleteAddress(id);

@@ -1,5 +1,7 @@
 package com.sst.sst_services;
 
+import com.sst.converter.AddressDtoConverter;
+import com.sst.sst_dto.AddressResponseDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +14,17 @@ import java.util.List;
 public class AddressService {
 
 	private final AddressRepository addressRepository;
+	private final AddressDtoConverter addressDtoConverter;
 
-	public AddressService(AddressRepository addressRepository, ModelMapper modelMapper) {
+	public AddressService(AddressRepository addressRepository, AddressDtoConverter addressDtoConverter) {
 		this.addressRepository = addressRepository;
-	}
+        this.addressDtoConverter = addressDtoConverter;
+    }
 
 	// Create Address
-	public Address createAddress(Address address) {
-		return addressRepository.save(address);
+	public AddressResponseDto createAddress(Address address) {
+		Address newAddress = addressRepository.save(address);
+		return addressDtoConverter.convertAddressToAddressDto(newAddress);
 	}
 
 	// Get All Addresses
