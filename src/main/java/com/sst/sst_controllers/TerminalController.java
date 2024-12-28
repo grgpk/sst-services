@@ -29,12 +29,12 @@ public class TerminalController {
 	}
 
 	@GetMapping
-	public List<Terminal> getAllTerminals() {
+	public List<TerminalDto> getAllTerminals() {
 		return terminalService.getAllTerminals();
 	}
 
 	@GetMapping("/{id}")
-	public Terminal getTerminalById(@PathVariable Long id) {
+	public TerminalDto getTerminalById(@PathVariable Long id) {
 		return terminalService.getTerminalById(id);
 	}
 
