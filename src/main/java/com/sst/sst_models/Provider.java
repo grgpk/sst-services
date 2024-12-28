@@ -11,7 +11,6 @@ import lombok.Data;
 
 @Entity
 @Table(schema = "sst_schema")
-@Data
 public class Provider {
 
 	@Id
@@ -24,4 +23,69 @@ public class Provider {
 	private BigDecimal minAmount;
 	private BigDecimal maxAmount;
 	private boolean active;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDeptCode() {
+		return deptCode;
+	}
+
+	public void setDeptCode(String deptCode) {
+		this.deptCode = deptCode;
+	}
+
+	public String getPayCode() {
+		return payCode;
+	}
+
+	public void setPayCode(String payCode) {
+		this.payCode = payCode;
+	}
+
+	public Integer getMaxThreads() {
+		return maxThreads;
+	}
+
+	public void setMaxThreads(Integer maxThreads) {
+		this.maxThreads = maxThreads;
+	}
+
+	public BigDecimal getMinAmount() {
+		return minAmount;
+	}
+
+	public void setMinAmount(BigDecimal minAmount) {
+		this.minAmount = minAmount;
+	}
+
+	public BigDecimal getMaxAmount() {
+		return maxAmount;
+	}
+
+	public void setMaxAmount(BigDecimal maxAmount) {
+		this.maxAmount = maxAmount;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 }
