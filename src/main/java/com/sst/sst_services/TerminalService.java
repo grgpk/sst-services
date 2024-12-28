@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.sst.mapper.TerminalMapper;
 import com.sst.sst_dto.TerminalDto;
+import com.sst.sst_exceptions.HttpRequestException;
 import com.sst.sst_repositories.TerminalRepository;
 
 @Service
@@ -30,14 +31,14 @@ public class TerminalService {
 
 	public TerminalDto getTerminalById(Long id) {
 		var terminal = terminalRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Terminal not found with ID: " + id));
+				.orElseThrow(() -> new HttpRequestException("Terminal not found with ID: " + id));
 	
 		return terminalMapper.fromTerminal(terminal);
 	}
 
 	public void deleteTerminalById(Long id) {
 		if (!terminalRepository.existsById(id)) {
-			throw new RuntimeException("Terminal not found with ID: " + id);
+			throw new HttpRequestException("Terminal not found with ID: " + id);
 		}
 		terminalRepository.deleteById(id);
 	}

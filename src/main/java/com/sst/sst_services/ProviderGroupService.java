@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.sst.mapper.ProviderGroupMapper;
 import com.sst.sst_dto.ProviderDto;
 import com.sst.sst_dto.ProviderGroupDto;
+import com.sst.sst_exceptions.HttpRequestException;
 import com.sst.sst_models.ProviderGroup;
 import com.sst.sst_repositories.ProviderGroupRepository;
 
@@ -35,14 +36,14 @@ public class ProviderGroupService {
 
 	public ProviderGroupDto getProviderGroupById(Long id) {
 		var providerGroup = providerGroupRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Terminal not found with ID: " + id));
+				.orElseThrow(() -> new HttpRequestException("Provider group not found with ID: " + id));
 
 		return providerGroupMapper.fromProviderGroup(providerGroup);
 	}
 
 	public void deleteProviderGroupById(Long id) {
 		if (!providerGroupRepository.existsById(id)) {
-			throw new RuntimeException("Provider not found with ID: " + id);
+			throw new HttpRequestException("Provider group not found with ID: " + id);
 		}
 		providerGroupRepository.deleteById(id);
 	}

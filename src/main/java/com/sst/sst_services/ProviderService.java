@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.sst.mapper.ProviderMapper;
 import com.sst.sst_dto.ProviderDto;
+import com.sst.sst_exceptions.HttpRequestException;
 import com.sst.sst_repositories.ProviderRepository;
 
 @Service
@@ -30,14 +31,14 @@ public class ProviderService {
 
 	public ProviderDto getProviderById(Long id) {
 		var provider = providerRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Terminal not found with ID: " + id));
+				.orElseThrow(() -> new HttpRequestException("Provider not found with ID: " + id));
 	
 		return providerMapper.fromProvider(provider);
 	}
 
 	public void deleteProviderById(Long id) {
 		if (!providerRepository.existsById(id)) {
-			throw new RuntimeException("Provider not found with ID: " + id);
+			throw new HttpRequestException("Provider not found with ID: " + id);
 		}
 		providerRepository.deleteById(id);
 	}
